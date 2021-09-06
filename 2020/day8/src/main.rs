@@ -6,7 +6,7 @@ use day8::parser::{parse_instruction, Instruction};
 /// Add a signed value to an unsigned one
 fn add(u: usize, i: i32) -> usize {
     if i.is_negative() {
-        u - i.wrapping_abs() as u32 as usize
+        u - i.wrapping_abs() as usize
     } else {
         u + i as usize
     }
@@ -64,23 +64,20 @@ fn execute(mut ip: usize, mut acc: i32, program: &[Instruction]) -> Execution {
 }
 
 /// Fix the program
-/// Returns IP at which program needs fixing and accumulator after the fixed program finished.
-fn fix_program(
+/// If successfull, returns IP at which program needs fixing and accumulator after the fixed program finished.
+fn try_fix_program(
     mut ip: usize,
     mut acc: i32,
     program: &mut [Instruction],
-    mut history: &mut [Instruction],
-) -> (IP, Acc) {
+    mut history: &[Instruction],
+) -> Result<(IP, Acc), &'static str> {
     loop {
-        debug_assert!(ip != 0);
         match history.last() {
             Some(Instruction::Jmp(jmp)) => ip = add(ip, -jmp),
-            Some(Instruction::Acc(_)) => ip = add(ip, -1),
-            Some(Instruction::Nop(_)) => ip = add(ip, -1),
-            _ => panic!("Ran out of instructions in the history"),
+            Some(Instruction::Acc(_) | Instruction::Nop(_)) => ip = add(ip, -1),
+            _ => return Err("Ran out of instructions in the history"),
         };
-        let len = history.len();
-        history = &mut history[0..add(len, -1)];
+        history = &history[0..add(history.len(), -1)];
         if let Instruction::Acc(val) = program[ip] {
             acc -= val;
         }
@@ -88,10 +85,10 @@ fn fix_program(
         match program_at_ip {
             Instruction::Nop(val) => program[ip] = Instruction::Jmp(val),
             Instruction::Jmp(val) => program[ip] = Instruction::Nop(val),
-            _ => {}
+            _ => continue, // Nothing changed, continue to previous instruction
         }
         if let Execution::Finished(acc) = execute(ip, acc, program) {
-            return (ip, acc);
+            return Ok((ip, acc));
         }
         program[ip] = program_at_ip;
     }
@@ -99,10 +96,13 @@ fn fix_program(
 
 fn main() {
     let mut program = parse_instructions(io::stdin().lock().lines().map(|l| l.unwrap()));
-    if let Execution::InfLoop(ip, acc, mut history) = execute(0, 0, &program) {
+    if let Execution::InfLoop(ip, acc, history) = execute(0, 0, &program) {
         println!("PART 1: Acc = {}", acc);
-        let (_ip, acc) = fix_program(ip, acc, &mut program, &mut history);
-        println!("PART 2: Acc = {}", acc);
+        if let Ok((_, acc)) = try_fix_program(ip, acc, &mut program, &history) {
+            println!("PART 2: Acc = {}", acc);
+        } else {
+            panic!("Failed to fix the program")
+        }
     } else {
         panic!("The program was supposed to enter an infinite loop");
     }
@@ -120,10 +120,8 @@ mod tests {
         let mut program = parse_instructions(test_data);
         let res = execute(0, 0, &program);
 
-        if let Execution::InfLoop(ip, acc, mut history) = res {
-            let (ip, acc) = fix_program(ip, acc, &mut program, &mut history);
-            assert_eq!(ip, 7);
-            assert_eq!(acc, 8);
+        if let Execution::InfLoop(ip, acc, history) = res {
+            assert_eq!(try_fix_program(ip, acc, &mut program, &history), Ok((7, 8)));
         } else {
             panic!("It was supposed to be an infinite loop")
         }
