@@ -3,6 +3,7 @@ use aocf::Aoc;
 static DAY: u32 = 9;
 static YEAR: i32 = 2020;
 
+/// Find two distinct numbers in `data` that sum up to `sum`
 fn find_two_summing_to(data: &sorted_vec::SortedSet<u64>, sum: u64) -> Option<(u64, u64)> {
     let mut front_iter = data.iter();
     let mut back_iter = data.iter().rev();
@@ -29,6 +30,7 @@ fn find_two_summing_to(data: &sorted_vec::SortedSet<u64>, sum: u64) -> Option<(u
     }
 }
 
+/// PART1: find the vulnerability in `data`
 fn find_vulnerability(preamble_len: usize, data: &[u64]) -> Option<(usize, u64)> {
     let mut to_remove_from_preamble = data.iter();
     let mut data_iter = data.iter();
@@ -54,7 +56,8 @@ fn find_vulnerability(preamble_len: usize, data: &[u64]) -> Option<(usize, u64)>
     None
 }
 
-fn find_contiguous_set<'a>(num: u64, data: &[u64]) -> Option<&[u64]> {
+/// Find a contiguous set of numbers in `data`, that sum up to `num`
+fn find_contiguous_set(num: u64, data: &[u64]) -> Option<&[u64]> {
     let (mut i, mut j) = (0, 1);
     let mut sum = data[i] + data[j];
     loop {
@@ -74,19 +77,17 @@ fn find_contiguous_set<'a>(num: u64, data: &[u64]) -> Option<&[u64]> {
     }
 }
 
+/// Find the smallest and largest numbers in given slice
 fn find_smallest_and_largest(data: &[u64]) -> Option<(u64, u64)> {
-    if data.len() < 2 {
+    if data.is_empty() {
         return None;
     }
-
-    let sorted = data
-        .iter()
-        .fold(sorted_vec::SortedSet::<u64>::new(), |mut v, val| {
-            v.insert(*val);
-            v
-        });
-
-    Some((*sorted.first().unwrap(), *sorted.last().unwrap()))
+    let (mut min, mut max) = (u64::MAX, u64::MIN);
+    for val in data {
+        min = min.min(*val);
+        max = max.max(*val);
+    }
+    Some((min, max))
 }
 
 fn main() {
@@ -142,7 +143,7 @@ mod tests {
     #[test]
     fn test_find_two_smallest() {
         assert_eq!(find_smallest_and_largest(&[]), None);
-        assert_eq!(find_smallest_and_largest(&[1]), None);
+        assert_eq!(find_smallest_and_largest(&[1]), Some((1, 1)));
         assert_eq!(find_smallest_and_largest(&[15, 25, 47, 40]), Some((15, 47)));
     }
 }
