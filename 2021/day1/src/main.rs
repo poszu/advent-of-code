@@ -15,16 +15,16 @@ fn count_number_depth_increases(measures: &[usize]) -> usize {
 /// Part 2
 fn count_number_window_of_3_sum_increases(measures: &[usize]) -> usize {
     let mut prev_window_sum: usize = measures[0..3].iter().sum();
-    
+
     measures
-    .windows(3)
-    .filter(|items| {
-        let sum = items.iter().sum();
-        let result = sum > prev_window_sum;
-        prev_window_sum = sum;
-        result
-    })
-    .count()
+        .windows(3)
+        .filter(|items| {
+            let sum = items.iter().sum();
+            let result = sum > prev_window_sum;
+            prev_window_sum = sum;
+            result
+        })
+        .count()
 }
 
 fn main() {
@@ -33,8 +33,14 @@ fn main() {
         .map(|l| l.parse::<usize>().unwrap())
         .collect::<Vec<usize>>();
 
-    println!("PART1: The result is: {}", count_number_depth_increases(&data));
-    println!("PART2: The result is: {}", count_number_window_of_3_sum_increases(&data));
+    println!(
+        "PART1: The result is: {}",
+        count_number_depth_increases(&data)
+    );
+    println!(
+        "PART2: The result is: {}",
+        count_number_window_of_3_sum_increases(&data)
+    );
 }
 
 #[cfg(test)]
