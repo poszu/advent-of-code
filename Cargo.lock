@@ -285,6 +285,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "day7_2021"
+version = "0.1.0"
+
+[[package]]
 name = "day8"
 version = "0.1.0"
 dependencies = [
