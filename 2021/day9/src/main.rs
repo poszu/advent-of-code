@@ -1,3 +1,5 @@
+use std::collections::VecDeque;
+
 use itertools::Itertools;
 
 #[derive(PartialEq, Eq, Clone, Copy, Debug, Hash)]
@@ -88,13 +90,19 @@ impl HeatMap {
         self.low_points().map(|pos| self.get(pos).unwrap())
     }
 
-    /// Get a basin for given position
+    /// Get a basin for the given position
     fn get_basin(&self, pos: Vec2) -> Vec<Vec2> {
-        let mut res = vec![pos];
-        for n_pos in self.neighbors(pos).filter(move |n_pos| {
-            self.get(*n_pos).unwrap() != 9 && self.get(*n_pos).unwrap() > self.get(pos).unwrap()
-        }) {
-            res.extend(self.get_basin(n_pos).into_iter())
+        let mut res = vec![];
+        let mut queue = VecDeque::<Vec2>::from([pos]);
+
+        while let Some(pos) = queue.pop_front() {
+            res.push(pos);
+            let pos_val = self.get(pos).unwrap();
+
+            queue.extend(self.neighbors(pos).filter(|n_pos| {
+                let n_pos_val = self.get(*n_pos).unwrap();
+                n_pos_val != 9 && n_pos_val > pos_val
+            }));
         }
 
         res.into_iter().unique().collect()
