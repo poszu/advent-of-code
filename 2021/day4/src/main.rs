@@ -2,10 +2,8 @@ use colored::Colorize;
 use itertools::Itertools;
 use std::{collections::HashMap, fmt::Debug};
 
-struct Vec2 {
-    x: usize,
-    y: usize,
-}
+extern crate utils;
+type Vec2 = utils::Vec2<usize>;
 
 #[derive(Default, Debug, Clone, Copy)]
 struct Num {

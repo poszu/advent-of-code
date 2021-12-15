@@ -1,2 +1,2 @@
 [workspace]
-members = ["2020/day*", "2021/day*"]
+members = ["2020/day*", "2021/day*", "utils"]

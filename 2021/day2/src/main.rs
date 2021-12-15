@@ -1,4 +1,6 @@
 use parse_display::FromStr;
+extern crate utils;
+type Vec2 = utils::Vec2<isize>;
 
 #[derive(FromStr, PartialEq, Debug, Copy, Clone)]
 #[display(style = "lowercase")]
@@ -17,12 +19,6 @@ trait SumbmarineControl {
             self.exec(*cmd);
         }
     }
-}
-
-#[derive(Default)]
-struct Vec2 {
-    x: isize,
-    y: isize,
 }
 
 #[derive(Default)]

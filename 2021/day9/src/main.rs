@@ -2,21 +2,8 @@ use std::collections::VecDeque;
 
 use itertools::Itertools;
 
-#[derive(PartialEq, Eq, Clone, Copy, Debug, Hash)]
-struct Vec2 {
-    x: isize,
-    y: isize,
-}
-
-impl std::ops::Add<Vec2> for Vec2 {
-    type Output = Vec2;
-    fn add(self, rhs: Vec2) -> Vec2 {
-        Vec2 {
-            x: self.x + rhs.x,
-            y: self.y + rhs.y,
-        }
-    }
-}
+extern crate utils;
+type Vec2 = utils::Vec2<isize>;
 
 #[derive(Debug)]
 struct HeatMap {
