@@ -281,6 +281,13 @@ name = "day14_2021"
 version = "0.1.0"
 
 [[package]]
+name = "day15_2021"
+version = "0.1.0"
+dependencies = [
+ "utils",
+]
+
+[[package]]
 name = "day1_2021"
 version = "0.1.0"
 
