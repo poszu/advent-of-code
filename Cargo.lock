@@ -349,6 +349,13 @@ name = "day21_2021"
 version = "0.1.0"
 
 [[package]]
+name = "day22_2021"
+version = "0.1.0"
+dependencies = [
+ "parse-display",
+]
+
+[[package]]
 name = "day2_2021"
 version = "0.1.0"
 dependencies = [
