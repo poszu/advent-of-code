@@ -2,7 +2,7 @@ use std::collections::{HashMap, HashSet};
 use std::io;
 use std::io::prelude::*;
 
-use day7::parser;
+mod parser;
 
 /// solution for PART 1
 /// Finds all bags that given bag can be put in

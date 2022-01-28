@@ -238,11 +238,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "day1"
-version = "0.1.0"
-
-[[package]]
-name = "day10"
+name = "day10_2020"
 version = "0.1.0"
 dependencies = [
  "aocf",
@@ -256,7 +252,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "day11"
+name = "day11_2020"
 version = "0.1.0"
 dependencies = [
  "itertools",
@@ -270,7 +266,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "day12"
+name = "day12_2020"
 version = "0.1.0"
 dependencies = [
  "derive_more",
@@ -329,11 +325,11 @@ dependencies = [
 ]
 
 [[package]]
-name = "day1_2021"
+name = "day1_2020"
 version = "0.1.0"
 
 [[package]]
-name = "day2"
+name = "day1_2021"
 version = "0.1.0"
 
 [[package]]
@@ -377,6 +373,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "day2_2020"
+version = "0.1.0"
+
+[[package]]
 name = "day2_2021"
 version = "0.1.0"
 dependencies = [
@@ -385,7 +385,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "day3"
+name = "day3_2020"
 version = "0.1.0"
 
 [[package]]
@@ -393,7 +393,7 @@ name = "day3_2021"
 version = "0.1.0"
 
 [[package]]
-name = "day4"
+name = "day4_2020"
 version = "0.1.0"
 
 [[package]]
@@ -406,7 +406,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "day5"
+name = "day5_2020"
 version = "0.1.0"
 
 [[package]]
@@ -419,7 +419,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "day6"
+name = "day6_2020"
 version = "0.1.0"
 
 [[package]]
@@ -427,7 +427,7 @@ name = "day6_2021"
 version = "0.1.0"
 
 [[package]]
-name = "day7"
+name = "day7_2020"
 version = "0.1.0"
 dependencies = [
  "nom",
@@ -438,7 +438,7 @@ name = "day7_2021"
 version = "0.1.0"
 
 [[package]]
-name = "day8"
+name = "day8_2020"
 version = "0.1.0"
 dependencies = [
  "nom",
@@ -452,7 +452,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "day9"
+name = "day9_2020"
 version = "0.1.0"
 dependencies = [
  "aocf",

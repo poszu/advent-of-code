@@ -1,7 +1,7 @@
 use std::io::prelude::*;
 use std::{collections::HashSet, io};
 
-use day8::parser::{parse_instruction, Instruction};
+use day8_2020::parser::{parse_instruction, Instruction};
 
 /// Add a signed value to an unsigned one
 fn add(u: usize, i: i32) -> usize {
