@@ -5,11 +5,11 @@ fn reduce(s: &str, take_low_c: char, take_high_c: char) -> i32 {
         match ch {
             v if v == take_high_c => {
                 low = low + (high - low) / 2 + 1;
-            },
+            }
             v if v == take_low_c => {
                 high = low + (high - low) / 2;
-            },
-            _ => panic!("Wrong char!")
+            }
+            _ => panic!("Wrong char!"),
         }
     }
     low
@@ -30,7 +30,11 @@ fn get_seat_id(pass: &str) -> i32 {
 fn main() {
     let boarding_passes = include_str!("input.txt").lines().collect::<Vec<_>>();
 
-    let highest = boarding_passes.iter().map(|pass| get_seat_id(pass)).max().unwrap();
+    let highest = boarding_passes
+        .iter()
+        .map(|pass| get_seat_id(pass))
+        .max()
+        .unwrap();
     print!("Highest seat ID: {}", highest);
 }
 

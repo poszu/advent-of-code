@@ -63,12 +63,12 @@ fn main() {
 }
 
 fn solve_part1(mut numbers: Vec<i32>) -> Option<(i32, i32)> {
-    numbers.sort();
+    numbers.sort_unstable();
     find_two_summing_to(numbers.as_slice(), 2020)
 }
 
 fn solve_part2(mut numbers: Vec<i32>) -> Option<(i32, i32, i32)> {
-    numbers.sort();
+    numbers.sort_unstable();
     find_three_summing_to(numbers.as_slice(), 2020)
 }
 

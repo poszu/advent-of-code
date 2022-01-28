@@ -4,7 +4,7 @@ fn count_trees(rows: &[&str], step: (usize, usize)) -> usize {
     let mut count = 0;
 
     for row in rows.iter().skip(step.1).step_by(step.1) {
-        if row[x..].chars().next().unwrap()  == '#' {
+        if row[x..].starts_with('#') {
             count += 1;
         }
         x = (x + step.0) % width;
