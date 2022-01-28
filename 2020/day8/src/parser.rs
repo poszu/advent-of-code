@@ -46,9 +46,9 @@ mod tests {
     }
     #[test]
     fn test_nop() {
-        assert_eq!(parse_instruction("nop +4"), Ok(("", Instruction::Nop)));
-        assert_eq!(parse_instruction("nop -4"), Ok(("", Instruction::Nop)));
-        assert_eq!(parse_instruction("nop 4"), Ok(("", Instruction::Nop)));
+        assert_eq!(parse_instruction("nop +4"), Ok(("", Instruction::Nop(4))));
+        assert_eq!(parse_instruction("nop -4"), Ok(("", Instruction::Nop(-4))));
+        assert_eq!(parse_instruction("nop 4"), Ok(("", Instruction::Nop(4))));
     }
     #[test]
     fn test_fail() {
