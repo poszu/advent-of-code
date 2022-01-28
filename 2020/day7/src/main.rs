@@ -1,6 +1,4 @@
 use std::collections::{HashMap, HashSet};
-use std::io;
-use std::io::prelude::*;
 
 mod parser;
 
@@ -60,7 +58,7 @@ fn parse_input<S: AsRef<str>>(input: impl IntoIterator<Item = S>) -> (ParentsMap
     (parents, children)
 }
 fn main() {
-    let (bag_parents, bag_children) = parse_input(io::stdin().lock().lines().map(|l| l.unwrap()));
+    let (bag_parents, bag_children) = parse_input(include_str!("input.txt").lines());
     let parents = find_all_parents(&bag_parents, "shiny gold");
     println!(
         "PART 1: There are {} bags that a shiny gold bag can be in.",

@@ -1,7 +1,3 @@
-use std::io;
-use std::io::prelude::*;
-
-
 fn reduce(s: &str, take_low_c: char, take_high_c: char) -> i32 {
     let mut low = 0;
     let mut high = (1 << s.len()) - 1;
@@ -32,7 +28,7 @@ fn get_seat_id(pass: &str) -> i32 {
 }
 
 fn main() {
-    let boarding_passes = io::stdin().lock().lines().collect::<Result<Vec<String>, _>>().unwrap();
+    let boarding_passes = include_str!("input.txt").lines().collect::<Vec<_>>();
 
     let highest = boarding_passes.iter().map(|pass| get_seat_id(pass)).max().unwrap();
     print!("Highest seat ID: {}", highest);

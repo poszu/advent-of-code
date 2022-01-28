@@ -1,7 +1,4 @@
-use std::io;
-use std::io::prelude::*;
-
-fn count_trees(rows: &Vec<String>, step: (usize, usize)) -> usize {
+fn count_trees(rows: &[&str], step: (usize, usize)) -> usize {
     let width = rows[0].len();
     let mut x = step.0;
     let mut count = 0;
@@ -15,20 +12,19 @@ fn count_trees(rows: &Vec<String>, step: (usize, usize)) -> usize {
     count
 }
 
-fn solve_part1(rows: &Vec<String>) -> usize {
+fn solve_part1(rows: &[&str]) -> usize {
     count_trees(rows, (3, 1))
 }
 
-fn solve_part2(rows: &Vec<String>) -> usize {
-    count_trees(rows, (1, 1)) *
-    count_trees(rows, (3, 1)) *
-    count_trees(rows, (5, 1)) *
-    count_trees(rows, (7, 1)) *
-    count_trees(rows, (1, 2))
-
+fn solve_part2(rows: &[&str]) -> usize {
+    count_trees(rows, (1, 1))
+        * count_trees(rows, (3, 1))
+        * count_trees(rows, (5, 1))
+        * count_trees(rows, (7, 1))
+        * count_trees(rows, (1, 2))
 }
 fn main() {
-    let rows = io::stdin().lock().lines().collect::<Result<Vec<String>, _>>().unwrap();
+    let rows = include_str!("input.txt").lines().collect::<Vec<_>>();
 
     println!("PART1: {}", solve_part1(&rows));
     println!("PART2: {}", solve_part2(&rows));
@@ -38,13 +34,9 @@ fn main() {
 mod tests {
     use super::*;
 
-    macro_rules! vec_of_strings {
-        ($($x:expr),*) => (vec![$($x.to_string()),*]);
-    }
-
     #[test]
     fn test_part1() {
-        let input = vec_of_strings![
+        let input = [
             "..##.......",
             "#...#...#..",
             ".#....#..#.",
@@ -55,14 +47,14 @@ mod tests {
             ".#........#",
             "#.##...#...",
             "#...##....#",
-            ".#..#...#.#"
+            ".#..#...#.#",
         ];
         assert_eq!(solve_part1(&input), 7);
     }
 
     #[test]
     fn test_part2() {
-        let input = vec_of_strings![
+        let input = [
             "..##.......",
             "#...#...#..",
             ".#....#..#.",
@@ -73,7 +65,7 @@ mod tests {
             ".#........#",
             "#.##...#...",
             "#...##....#",
-            ".#..#...#.#"
+            ".#..#...#.#",
         ];
         assert_eq!(solve_part2(&input), 336);
     }

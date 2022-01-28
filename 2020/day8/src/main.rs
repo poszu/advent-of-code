@@ -1,5 +1,4 @@
-use std::io::prelude::*;
-use std::{collections::HashSet, io};
+use std::collections::HashSet;
 
 use day8_2020::parser::{parse_instruction, Instruction};
 
@@ -95,7 +94,7 @@ fn try_fix_program(
 }
 
 fn main() {
-    let mut program = parse_instructions(io::stdin().lock().lines().map(|l| l.unwrap()));
+    let mut program = parse_instructions(include_str!("input.txt").lines());
     if let Execution::InfLoop(ip, acc, history) = execute(0, 0, &program) {
         println!("PART 1: Acc = {}", acc);
         if let Ok((_, acc)) = try_fix_program(ip, acc, &mut program, &history) {

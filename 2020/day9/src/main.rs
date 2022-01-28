@@ -1,8 +1,3 @@
-use aocf::Aoc;
-
-static DAY: u32 = 9;
-static YEAR: i32 = 2020;
-
 /// Find two distinct numbers in `data` that sum up to `sum`
 fn find_two_summing_to(data: &sorted_vec::SortedSet<u64>, sum: u64) -> Option<(u64, u64)> {
     let mut front_iter = data.iter();
@@ -91,15 +86,7 @@ fn find_smallest_and_largest(data: &[u64]) -> Option<(u64, u64)> {
 }
 
 fn main() {
-    let mut aoc = Aoc::new()
-        .year(Some(YEAR))
-        .day(Some(DAY))
-        .init()
-        .unwrap_or_else(|_| panic!("Failed to checkout {}/{}", DAY, YEAR));
-
-    let data = aoc
-        .get_input(false)
-        .expect("Failed to get input data")
+    let data = include_str!("input.txt")
         .lines()
         .map(|l| l.parse().unwrap())
         .collect::<Vec<u64>>();

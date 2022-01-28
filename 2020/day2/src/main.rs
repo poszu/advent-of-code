@@ -1,5 +1,3 @@
-use std::io::{self, BufRead};
-
 struct PasswordValidator {
     first: usize,
     second: usize,
@@ -42,11 +40,7 @@ fn is_valid2(line: &str) -> bool {
 }
 
 fn main() {
-    let lines = io::stdin()
-        .lock()
-        .lines()
-        .collect::<Result<Vec<String>, _>>()
-        .unwrap();
+    let lines = include_str!("input.txt").lines().collect::<Vec<_>>();
 
     let valid = lines.iter().filter(|line| is_valid(line)).count();
     println!("Part 1: {}", valid);

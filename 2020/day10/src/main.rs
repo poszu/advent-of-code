@@ -1,10 +1,5 @@
 use std::collections::HashMap;
 
-use aocf::Aoc;
-
-static DAY: u32 = 10;
-static YEAR: i32 = 2020;
-
 fn find_joltage_distribution(mut adapters: Vec<u64>) -> HashMap<i64, usize> {
     adapters.push(0); // inlet
     adapters.sort_unstable();
@@ -53,15 +48,7 @@ fn find_joltage_arrangments(mut adapters: Vec<u64>) -> usize {
 }
 
 fn main() {
-    let mut aoc = Aoc::new()
-        .year(Some(YEAR))
-        .day(Some(DAY))
-        .init()
-        .unwrap_or_else(|_| panic!("Failed to checkout {}/{}", DAY, YEAR));
-
-    let data = aoc
-        .get_input(false)
-        .expect("Failed to get input data")
+    let data = include_str!("input.txt")
         .lines()
         .map(|l| l.parse())
         .collect::<Result<Vec<u64>, _>>()

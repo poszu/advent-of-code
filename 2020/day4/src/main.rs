@@ -1,5 +1,3 @@
-use std::io;
-use std::io::prelude::*;
 use std::collections::BTreeSet;
 
 
@@ -19,8 +17,8 @@ fn main() {
 
     let mut valid = 0;
 
-    for line in io::stdin().lock().lines() {
-        match line.unwrap() {
+    for line in include_str!("input.txt").lines() {
+        match line {
             e if e.is_empty() => {
                 if passport == required_set {
                     valid += 1;

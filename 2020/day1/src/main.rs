@@ -1,5 +1,3 @@
-use std::io::{self, BufRead};
-
 fn find_two_summing_to(numbers: &[i32], sum: i32) -> Option<(i32, i32)> {
     let mut iter = numbers.iter();
     let mut a = iter.next().unwrap();
@@ -49,10 +47,9 @@ fn find_three_summing_to(numbers: &[i32], sum: i32) -> Option<(i32, i32, i32)> {
 }
 
 fn main() {
-    let numbers = io::stdin()
-        .lock()
+    let numbers = include_str!("input.txt")
         .lines()
-        .map(|l| l.unwrap().parse::<i32>())
+        .map(|l| l.parse::<i32>())
         .collect::<Result<Vec<i32>, _>>()
         .unwrap();
 

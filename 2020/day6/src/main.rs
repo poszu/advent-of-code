@@ -1,6 +1,4 @@
 use std::collections::{HashMap, HashSet};
-use std::io;
-use std::io::prelude::*;
 
 fn count_anyone<S: AsRef<str>>(list: impl IntoIterator<Item = S>) -> usize {
     let mut cnt = 0;
@@ -45,11 +43,7 @@ fn count_everyone<S: AsRef<str>>(list: impl IntoIterator<Item = S>) -> usize {
 }
 
 fn main() {
-    let lines = io::stdin()
-        .lock()
-        .lines()
-        .collect::<Result<Vec<String>, _>>()
-        .unwrap();
+    let lines = include_str!("input.txt").lines().collect::<Vec<_>>();
 
     println!("Part1, The sum is {}!", count_anyone(&lines));
     println!("Part2, The sum is {}!", count_everyone(lines));
