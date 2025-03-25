@@ -1,28 +1,12 @@
-# My solutions to [Advent of Code](https://adventofcode.com) in Rust
+# My solutions to [Advent of Code](https://adventofcode.com)
 
-## Year 2020 (wip)
-It is a work in progress:
-- completed (2 stars): days 1 - 3, 6 - 12,
-- half-completed (1 star): days 4 and 5.
+## Progress
 
-## Year 2021 (completed - 50 stars)
+- 2020: wip (Rust)
 
-## How to run
-The repo contains a Rust workspace with solutions placed in relevant directory (for example, `2021/day1`).
+- 2021: completed (Rust)
 
-All solutions contain my input in `src/input.txt` file, which is compiled into the binary.
+- 2022: wip (Rust)
 
-To run given day execute:
-```
-cargo run --bin <day>_<year>
-```
+- 2024: wip (Zig)
 
-For example:
-```
-cargo run --bin day1_2021
-```
-
-To run tests, execute:
-```
-cargo test --bin <day>_<year>
-```
